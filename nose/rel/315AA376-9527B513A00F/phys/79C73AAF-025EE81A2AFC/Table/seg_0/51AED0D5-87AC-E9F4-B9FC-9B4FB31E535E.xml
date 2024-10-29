@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ROL" directorySegmentName="seg_0" id="51AED0D5-87AC-E9F4-B9FC-9B4FB31E535E">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<schemaObject>EC60F058-D2BD-FAC7-999E-62DDF1CCB456</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>00AA2216-3781-F7A3-FEEF-8BDDB9B860F9</segment>
+<tableSpace>9F4F0D2D-9345-16AB-660C-558CB25C6C9D</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="IDROL" id="BD2E05C7-289A-0C17-7DC1-2F79A96F7F9B">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TIPO" id="D203D123-117E-49E0-19C0-0E96ECB9C948">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ROL_PK" id="CA2D0A1A-A5B5-1A44-3B48-DB2FDDA3F1F5">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<schemaObject>EC60F058-D2BD-FAC7-999E-62DDF1CCB456</schemaObject>
+<segment>4C2068F4-33A6-C172-09EB-79C03ADFF167</segment>
+<tableSpace>9F4F0D2D-9345-16AB-660C-558CB25C6C9D</tableSpace>
+<indexSegment>4C2068F4-33A6-C172-09EB-79C03ADFF167</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

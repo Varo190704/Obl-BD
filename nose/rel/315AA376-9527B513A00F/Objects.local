@@ -1,0 +1,5 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="SchemaObject" objectID="EC60F058-D2BD-FAC7-999E-62DDF1CCB456" name="VARO" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.SchemaObject" propertyParentId="315AA376-B77B-49D9-8166-9527B513A00F" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="51AED0D5-87AC-E9F4-B9FC-9B4FB31E535E" name="ROL" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="315AA376-B77B-49D9-8166-9527B513A00F" propertySourceId="" propertyTargetId=""/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

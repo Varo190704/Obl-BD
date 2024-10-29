@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51AED0D5-87AC-E9F4-B9FC-9B4FB31E535E" schemaObject="EC60F058-D2BD-FAC7-999E-62DDF1CCB456" name="ROL">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<importedID>C142DC07-006A-9F75-B233-B4E70B0D7945</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IDROL" id="BD2E05C7-289A-0C17-7DC1-2F79A96F7F9B">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<importedID>C90654FD-CF88-76ED-3B8C-4673545788E7</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO" id="D203D123-117E-49E0-19C0-0E96ECB9C948">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<importedID>AD55E528-E397-5075-8861-7B91C4BD59E0</importedID>
+<constraintName>SYS_C008314</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;Amigo&apos;" description=""/>
+<valueDef value="&apos;Coach&apos;" description=""/>
+<valueDef value="&apos;Tutor&apos;" description=""/>
+</listOfValues>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA2D0A1A-A5B5-1A44-3B48-DB2FDDA3F1F5" schemaObject="EC60F058-D2BD-FAC7-999E-62DDF1CCB456" name="ROL_PK">
+<createdBy>varo1</createdBy>
+<createdTime>2024-10-24 23:02:40 UTC</createdTime>
+<ownerDesignName>nose</ownerDesignName>
+<importedID>2F76A04D-A7ED-D856-429C-4697C3DC7859</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD2E05C7-289A-0C17-7DC1-2F79A96F7F9B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
