@@ -40,7 +40,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -52,7 +52,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -76,12 +76,12 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); --ningun usuario val lo tiene regis
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); --.
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Deporte', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --no valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --no regis
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Deporte', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --no valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --no regis
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --valido
 
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --valido (no valido por configuracioon interes deporte
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '18-24', DATE '2024-05-20', 50, 120, 2); --menor 20
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '18-24', DATE '2024-05-20', 50, 120, 2); --menor 20
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '35-44', DATE '2024-06-15', 300, 50, 3); --valido
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje20@gmail.com', 'Sara', '35-44', DATE '2024-03-30', 75, 80, 1); --primer trimestre
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('jazz@gmail.com', 'Pedro', '18-24', DATE '2024-04-05', 60, 70, 2); --menor 20
@@ -112,7 +112,7 @@ tablas en 9
         OR U.rangoEdad = '35-44' 
         OR U.rangoEdad = '45-54' 
         OR U.rangoEdad = '55-64' 
-        OR U.rangoEdad = '65 o m·s')
+        OR U.rangoEdad = '65 o m√°s')
     AND U.fecharegistro Between TO_DATE('2024-04-01', 'YYYY-MM-DD') AND TO_DATE('2024-06-30', 'YYYY-MM-DD')
     AND c.interes != 'Deportes';
 
@@ -154,7 +154,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -166,7 +166,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -190,12 +190,12 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --.
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --no valid por asis
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); -- no valid por asis
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --.
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --no valid por asis
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); -- no valid por asis
 
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '18-24', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '18-24', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '35-44', DATE '2024-06-15', 300, 50, 3); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje20@gmail.com', 'Sara', '35-44', DATE '2024-03-30', 75, 80, 1); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('jazz@gmail.com', 'Pedro', '18-24', DATE '2024-04-05', 60, 70, 2); --x
@@ -272,7 +272,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -284,7 +284,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -307,14 +307,14 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '18-24', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '18-24', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '35-44', DATE '2024-06-15', 300, 50, 3); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje20@gmail.com', 'Sara', '35-44', DATE '2024-03-30', 75, 80, 1); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('jazz@gmail.com', 'Pedro', '18-24', DATE '2024-04-05', 60, 70, 2); --x
@@ -340,7 +340,7 @@ tablas en 9
     Join configuracion c ON a.idasistente = c.idasistente
     Join asignarol ar ON a.idasistente = ar.idasistente
     Join rol r ON r.idrol = ar.idrol
-    where c.rasgo = 'SoÒador'
+    where c.rasgo = 'So√±ador'
     And r.tipo = 'Amigo'
     
     UNION
@@ -350,7 +350,7 @@ tablas en 9
     Join configuracion c ON a.idasistente = c.idasistente
     Join asignarol ar ON a.idasistente = ar.idasistente
     Join rol r ON r.idrol = ar.idrol
-    where c.rasgo = 'EnergÈtico'
+    where c.rasgo = 'Energ√©tico'
     And r.tipo = 'Amigo'
     
     except
@@ -360,8 +360,8 @@ tablas en 9
     Join configuracion c ON a.idasistente = c.idasistente
     Join asignarol ar ON a.idasistente = ar.idasistente
     Join rol r ON r.idrol = ar.idrol
-    where c.rasgo = 'EnergÈtico'
-    and c.rasgo = 'SoÒador'
+    where c.rasgo = 'Energ√©tico'
+    and c.rasgo = 'So√±ador'
     And r.tipo = 'Amigo';
 
     --Esperado: | 2 | Ana | Femenino |
@@ -401,7 +401,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -413,7 +413,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -437,14 +437,14 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '18-24', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '18-24', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '35-44', DATE '2024-10-15', 300, 50, 3); --x
 
         INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
@@ -526,7 +526,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -538,7 +538,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -562,9 +562,9 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
@@ -588,7 +588,7 @@ tablas en 9
     Join configuracion c ON c.idasistente = u.idasistente
     Join compra c2 ON c2.idconfiguracion = c.idconfiguracion
     Where (U.rangoEdad = '55-64'
-       OR U.rangoEdad = '65 o m·s')
+       OR U.rangoEdad = '65 o m√°s')
     And c2.totalmonedas = (select max(totalmonedas)
     from compra c2 
     Join configuracion c ON c2.idconfiguracion = c.idconfiguracion
@@ -632,7 +632,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -644,7 +644,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -668,14 +668,14 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '35-44', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
 
         INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
@@ -703,7 +703,7 @@ tablas en 9
     WHERE (U.rangoEdad = '35-44' 
         OR U.rangoEdad = '45-54' 
         OR U.rangoEdad = '55-64' 
-        OR U.rangoEdad = '65 o m·s')
+        OR U.rangoEdad = '65 o m√°s')
     And a.genero = 'Femenino'
     And c2.totalgemas > c2.totalmonedas; 
 
@@ -746,7 +746,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -758,7 +758,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -782,14 +782,14 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '35-44', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
 
         INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
@@ -845,7 +845,7 @@ tablas en 9
             idConfiguracion INT NOT NULL PRIMARY KEY,
             ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
             interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
-            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'TÌmido', 'EnergÈtico', 'Pr·ctico', 'SoÒador', 'ArtÌstico', 'LÛgico')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'T√≠mido', 'Energ√©tico', 'Pr√°ctico', 'So√±ador', 'Art√≠stico', 'L√≥gico')),
             voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
             costoGemas INT,
             costoMonenas INT,
@@ -857,7 +857,7 @@ tablas en 9
         CREATE TABLE Usuario (
             email VARCHAR2(255) NOT NULL PRIMARY KEY,
             nombre VARCHAR2(255),
-            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m·s')),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o m√°s')),
             fechaRegistro DATE NOT NULL,
             saldoGemas INT,
             saldoMonedas INT,
@@ -881,14 +881,14 @@ tablas en 9
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
         INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
 
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 2, 'S'); --valido
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'ArtÌstico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'EnergÈtico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
-        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'SoÒador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Art√≠stico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energ√©tico', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'So√±ador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'LucÌa', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc√≠a', '35-44', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
 
         INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
