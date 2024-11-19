@@ -1,5 +1,4 @@
 /*
-
 En 7 no entendi la letra
 Problema en 8 no se como poner fecha actual
 tablas en 9
@@ -214,7 +213,6 @@ tablas en 9
         INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 3); -- Alex como Tutor
         
     --Fin tablas ejer 2
-    --no anda bien
 
     Select c.idconfiguracion
     From configuracion c
@@ -675,7 +673,7 @@ tablas en 9
         INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'Soñador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
         
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
-        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Lucía', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Luc�a', '35-44', DATE '2024-05-20', 50, 120, 2); --x
         INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
 
         INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
@@ -703,7 +701,7 @@ tablas en 9
     WHERE (U.rangoEdad = '35-44' 
         OR U.rangoEdad = '45-54' 
         OR U.rangoEdad = '55-64' 
-        OR U.rangoEdad = '65 o más')
+        OR U.rangoEdad = '65 o m�s')
     And a.genero = 'Femenino'
     And c2.totalgemas > c2.totalmonedas; 
 
@@ -806,8 +804,16 @@ tablas en 9
         INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 2); -- Alex como Tutor
     
     --Fin tabla 7
-
-    
+        
+    select c.ropa, c.rasgo, c.interes, c.costoGemas, u.email, u.nombre, a.nombre
+    from Configuracion c
+    join Usuario u on c.idasistente = u.idasistente
+    JOIN asistente a on c.idasistente = a.idasistente
+    JOIN asignaRol ar on a.idasistente = ar.idasistente
+    join Rol r on ar.idRol = r.idRol
+    WHERE c.costoGemas <= u.saldoGemas
+    and lower(a.nombre) like '%a%'
+    and r.tipo = 'Tutor';
 
 -- Fin Ejercicio 7
 
@@ -906,26 +912,230 @@ tablas en 9
     
     --fin tablas 8
 
-    Select c.*, c2.totalgemas, c2.fechacompra
-    From configuracion c
-    Join compra c2 ON c.idconfiguracion = c2.idconfiguracion
-    where c2.fechacompra >= '01/12/2023 00:00:00'
-    and c2.fechaCompra <= sysdate;
-    
---poner que sea la confi que tenga mas compras
-    
+    SELECT c.*, c2.totalgemas, c2.fechacompra
+    FROM configuracion c
+    JOIN compra c2 ON c.idconfiguracion = c2.idconfiguracion
+    WHERE c2.fechacompra BETWEEN TO_DATE('01/12/2023', 'DD/MM/YYYY') AND SYSDATE
+    AND c.idconfiguracion = (
+        SELECT idconfiguracion
+        FROM compra
+        WHERE fechacompra BETWEEN TO_DATE('01/12/2023', 'DD/MM/YYYY') AND SYSDATE
+        GROUP BY idconfiguracion
+        ORDER BY COUNT(*) DESC
+        FETCH FIRST 1 ROWS ONLY
+    );
+
 -- Fin Ejercicio 8
 
 -- Ejercicio 9
 
-    Select c2.totalgemas, c2.totalmonedas, /* Falta poner cant confi */ 
-    From configuracion c
-    Join compra c2 On c2.idconfiguracion = c.idconfiguracion
-    Join usuario u on u.idAsistente = c.idasistente /* esto es para no tener que hacer join a asistente */
-    --hice join de usuario para poder meter el descuento como col en esa tabla, mas rapido para trabajar y cambiar 
-    Where --no se que poner en este where, porque no tengo que comparar nada
+    --Tabla 9
     
+        DROP TABLE Compra;
+        DROP TABLE Usuario;
+        DROP TABLE Configuracion;
+        DROP TABLE AsignaRol;
+        DROP TABLE Rol;
+        DROP TABLE Asistente;
+         
+        CREATE TABLE Asistente (
+            idAsistente INT NOT NULL PRIMARY KEY,
+            nombre VARCHAR2(255) NOT NULL,
+            genero VARCHAR2(50) NOT NULL CHECK (genero IN ('Femenino', 'Masculino', 'No binario'))
+        );
+         
+        CREATE TABLE Rol (
+            idRol INT NOT NULL PRIMARY KEY,
+            tipo VARCHAR2(50) NOT NULL CHECK (tipo IN ('Tutor', 'Amigo', 'Coach'))
+        );
+          
+        CREATE TABLE AsignaRol (
+            idAsistente INT NOT NULL,
+            idRol INT NOT NULL, 
+            PRIMARY KEY (idAsistente, idRol),
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente),
+            FOREIGN KEY (idRol) REFERENCES ROL(idRol) 
+        );
+        
+        CREATE TABLE Configuracion (
+            idConfiguracion INT NOT NULL PRIMARY KEY,
+            ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
+            interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'Tímido', 'Energético', 'Práctico', 'Soñador', 'Artístico', 'Lógico')),
+            voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
+            costoGemas INT,
+            costoMonenas INT,
+            idAsistente INT NOT NULL,
+            vigente CHAR(1) NOT NULL CHECK (vigente IN ('S', 'N')),
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente)
+        );
+        
+        CREATE TABLE Usuario (
+            email VARCHAR2(255) NOT NULL PRIMARY KEY,
+            nombre VARCHAR2(255),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o más')),
+            fechaRegistro DATE NOT NULL,
+            saldoGemas INT,
+            saldoMonedas INT,
+            idAsistente INT NOT NULL,
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente)  
+        );
+        
+        
+        CREATE TABLE Compra (
+            idConfiguracion INT NOT NULL,
+            email VARCHAR2(255) NOT NULL,
+            fechaCompra DATE NOT NULL,
+            totalGemas INT NOT NULL,
+            totalMonedas INT NOT NULL,
+            PRIMARY KEY (idConfiguracion, email, fechaCompra),
+            FOREIGN KEY (idConfiguracion) REFERENCES CONFIGURACION(idConfiguracion),
+            FOREIGN KEY (email) REFERENCES USUARIO(email)
+        );
+    
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (1, 'Carlos', 'Masculino'); -- es valid
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
+
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energético', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'Soñador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Artístico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energético', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'Soñador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Lucía', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
+
+        INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
+        INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (2, 'eje1@gmail.com', DATE '2024-06-15', 200, 80); -- x
+
+        INSERT INTO Rol (idRol, tipo) VALUES (1, 'Coach'); 
+        INSERT INTO Rol (idRol, tipo) VALUES (2, 'Amigo'); 
+        INSERT INTO Rol (idRol, tipo) VALUES (3, 'Tutor'); 
+
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (1, 1); -- Carlos como Coach
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (2, 2); -- Ana como Amigo
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 3); -- Alex como Tutor
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 1); -- Alex como Tutor
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 2); -- Alex como Tutor
+    
+    --fin tablas 9
+
+    SELECT 
+    u.email AS Usuario,
+    TO_CHAR(c2.fechaCompra, 'YYYY-MM') AS Mes,
+    COUNT(c2.idConfiguracion) AS TotalConfiguraciones,
+    SUM(c2.totalGemas) AS TotalGemasGastadas,
+    SUM(c2.totalMonedas) AS TotalMonedasGastadas,
+    CASE
+        WHEN COUNT(c2.idConfiguracion) BETWEEN 1 AND 3 THEN '5%'
+        WHEN COUNT(c2.idConfiguracion) BETWEEN 4 AND 6 THEN '10%'
+        WHEN COUNT(c2.idConfiguracion) > 6 THEN '15%'
+        ELSE '0%'
+    END AS DescuentoProximo
+    FROM Compra c2
+    JOIN Usuario u ON u.email = c2.email
+    JOIN Configuracion c ON c.idConfiguracion = c2.idConfiguracion
+    GROUP BY u.email, TO_CHAR(c2.fechaCompra, 'YYYY-MM')
+    ORDER BY TotalConfiguraciones DESC;
+
 -- Fin Ejercicio 9
 
 -- Ejercicio 10
+
+    
+    --Tabla 10
+    
+        DROP TABLE Compra;
+        DROP TABLE Usuario;
+        DROP TABLE Configuracion;
+        DROP TABLE AsignaRol;
+        DROP TABLE Rol;
+        DROP TABLE Asistente;
+         
+        CREATE TABLE Asistente (
+            idAsistente INT NOT NULL PRIMARY KEY,
+            nombre VARCHAR2(255) NOT NULL,
+            genero VARCHAR2(50) NOT NULL CHECK (genero IN ('Femenino', 'Masculino', 'No binario'))
+        );
+         
+        CREATE TABLE Rol (
+            idRol INT NOT NULL PRIMARY KEY,
+            tipo VARCHAR2(50) NOT NULL CHECK (tipo IN ('Tutor', 'Amigo', 'Coach'))
+        );
+          
+        CREATE TABLE AsignaRol (
+            idAsistente INT NOT NULL,
+            idRol INT NOT NULL, 
+            PRIMARY KEY (idAsistente, idRol),
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente),
+            FOREIGN KEY (idRol) REFERENCES ROL(idRol) 
+        );
+        
+        CREATE TABLE Configuracion (
+            idConfiguracion INT NOT NULL PRIMARY KEY,
+            ropa VARCHAR2(50) NOT NULL CHECK (ropa IN ('Verano', 'Primavera', 'Anime', 'Oficina', 'Fiesta', 'Deporte', 'Camisetas')),
+            interes VARCHAR2(50) NOT NULL CHECK (interes IN ('Juegos', 'Deportes', 'Historia', 'Moda')),
+            rasgo VARCHAR2(50) NOT NULL CHECK (rasgo IN ('Seguro', 'Tímido', 'Energético', 'Práctico', 'Soñador', 'Artístico', 'Lógico')),
+            voz VARCHAR2(50) NOT NULL CHECK (voz IN ('Femenina', 'Masculina')),
+            costoGemas INT,
+            costoMonenas INT,
+            idAsistente INT NOT NULL,
+            vigente CHAR(1) NOT NULL CHECK (vigente IN ('S', 'N')),
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente)
+        );
+        
+        CREATE TABLE Usuario (
+            email VARCHAR2(255) NOT NULL PRIMARY KEY,
+            nombre VARCHAR2(255),
+            rangoEdad VARCHAR2(10) CHECK (rangoEdad IN ('18-24', '25-34', '35-44', '45-54', '55-64', '65 o más')),
+            fechaRegistro DATE NOT NULL,
+            saldoGemas INT,
+            saldoMonedas INT,
+            idAsistente INT NOT NULL,
+            FOREIGN KEY (idAsistente) REFERENCES ASISTENTE(idAsistente)  
+        );
+        
+        
+        CREATE TABLE Compra (
+            idConfiguracion INT NOT NULL,
+            email VARCHAR2(255) NOT NULL,
+            fechaCompra DATE NOT NULL,
+            totalGemas INT NOT NULL,
+            totalMonedas INT NOT NULL,
+            PRIMARY KEY (idConfiguracion, email, fechaCompra),
+            FOREIGN KEY (idConfiguracion) REFERENCES CONFIGURACION(idConfiguracion),
+            FOREIGN KEY (email) REFERENCES USUARIO(email)
+        );
+    
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (1, 'Carlos', 'Masculino'); -- es valid
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (2, 'Ana', 'Femenino'); -- no valid no es coach
+        INSERT INTO Asistente (idAsistente, nombre, genero) VALUES (3, 'Alex', 'No binario'); -- no valid no es coach
+
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (1, 'Verano', 'Deportes', 'Energético', 'Masculina', 20, 10, 1, 'S'); --valido (no valid por no ser amigo)
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (2, 'Anime', 'Juegos', 'Soñador', 'Femenina', 15, 5, 2, 'S'); --valido
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (3, 'Primavera', 'Moda', 'Artístico', 'Femenina', 30, 15, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (4, 'Verano', 'Deportes', 'Energético', 'Masculina', 20, 10, 3, 'S'); --no valid por compartir los dos
+        INSERT INTO Configuracion (idConfiguracion, ropa, interes, rasgo, voz, costoGemas, costoMonenas, idAsistente, vigente) VALUES (5, 'Anime', 'Juegos', 'Soñador', 'Femenina', 15, 5, 3, 'S'); --no valid por compartir los dos
+        
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje10@gmail.com', 'Juan', '25-34', DATE '2024-04-10', 100, 200, 1); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje2@gmail.com', 'Lucía', '35-44', DATE '2024-05-20', 50, 120, 2); --x
+        INSERT INTO Usuario (email, nombre, rangoEdad, fechaRegistro, saldoGemas, saldoMonedas, idAsistente) VALUES ('eje1@gmail.com', 'Diego', '55-64', DATE '2024-10-15', 300, 50, 3); --x
+
+        INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (1, 'eje2@gmail.com', DATE '2024-06-02', 100, 90); -- x
+        INSERT INTO Compra (idConfiguracion, email, fechaCompra, totalGemas, totalMonedas) VALUES (2, 'eje1@gmail.com', DATE '2024-06-15', 200, 80); -- x
+
+        INSERT INTO Rol (idRol, tipo) VALUES (1, 'Coach'); 
+        INSERT INTO Rol (idRol, tipo) VALUES (2, 'Amigo'); 
+        INSERT INTO Rol (idRol, tipo) VALUES (3, 'Tutor'); 
+
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (1, 1); -- Carlos como Coach
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (2, 2); -- Ana como Amigo
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 3); -- Alex como Tutor
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 1); -- Alex como Tutor
+        INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 2); -- Alex como Tutor
+    
+    --fin tablas 10
+
 -- Fin Ejercicio 10
