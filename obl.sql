@@ -1021,9 +1021,9 @@ tablas en 9
         INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 2); -- Alex como Tutor
     
     --fin tablas 9
-
     SELECT 
-    u.email AS Usuario,
+    u.email AS Usuario, 
+    u.nombre, 
     TO_CHAR(c2.fechaCompra, 'YYYY-MM') AS Mes,
     COUNT(c2.idConfiguracion) AS TotalConfiguraciones,
     SUM(c2.totalGemas) AS TotalGemasGastadas,
@@ -1034,16 +1034,22 @@ tablas en 9
         WHEN COUNT(c2.idConfiguracion) > 6 THEN '15%'
         ELSE '0%'
     END AS DescuentoProximo
-    FROM Compra c2
-    JOIN Usuario u ON u.email = c2.email
-    JOIN Configuracion c ON c.idConfiguracion = c2.idConfiguracion
-    GROUP BY u.email, TO_CHAR(c2.fechaCompra, 'YYYY-MM')
-    ORDER BY TotalConfiguraciones DESC;
+    FROM 
+    Compra c2
+    JOIN 
+    Usuario u ON u.email = c2.email
+    JOIN 
+    Configuracion c ON c.idConfiguracion = c2.idConfiguracion
+    GROUP BY 
+    u.email, 
+    u.nombre, 
+    TO_CHAR(c2.fechaCompra, 'YYYY-MM')
+    ORDER BY 
+    TotalConfiguraciones DESC;
 
 -- Fin Ejercicio 9
 
 -- Ejercicio 10
-
     
     --Tabla 10
     
@@ -1137,5 +1143,35 @@ tablas en 9
         INSERT INTO AsignaRol (idAsistente, idRol) VALUES (3, 2); -- Alex como Tutor
     
     --fin tablas 10
+
+    SELECT 
+    c.ropa, 
+    c.rasgo, 
+    c.interes, 
+    c.voz,
+    COUNT(co.idConfiguracion) AS total_compras,
+    SUM(co.totalGemas) AS total_gemas_gastadas,
+    SUM(co.totalMonedas) AS total_monedas_gastadas,
+    MAX(u.rangoEdad) AS rango_edad_maxima_compra,
+    MIN(u.nombre) AS nombre_compra_minima,
+    CASE 
+        WHEN MAX(EXTRACT(MONTH FROM co.fechaCompra)) BETWEEN 1 AND 3 THEN 'Primer Trimestre'
+        WHEN MAX(EXTRACT(MONTH FROM co.fechaCompra)) BETWEEN 4 AND 6 THEN 'Segundo Trimestre'
+        WHEN MAX(EXTRACT(MONTH FROM co.fechaCompra)) BETWEEN 7 AND 9 THEN 'Tercer Trimestre'
+        ELSE 'Cuarto Trimestre'
+    END AS trimestre_compra,
+    a.nombre AS asistente_mas_configuraciones
+    FROM 
+    Configuracion c
+    JOIN 
+    Compra co ON c.idConfiguracion = co.idConfiguracion
+    JOIN 
+    Usuario u ON co.email = u.email
+    JOIN 
+    Asistente a ON c.idAsistente = a.idAsistente
+    GROUP BY 
+    c.ropa, c.rasgo, c.interes, c.voz, a.nombre
+    ORDER BY 
+    total_compras DESC;
 
 -- Fin Ejercicio 10
